@@ -192,7 +192,7 @@ const ProductCategories = () => {
               <div key={i} className="h-64 bg-gray-200 rounded-2xl animate-pulse"></div>
             ))
           ) : (
-            categories.map((category, index) => {
+            categories.slice(0, 3).map((category, index) => {
               const Icon = category.icon;
               return (
                 <motion.div

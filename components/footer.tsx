@@ -5,12 +5,12 @@ import { usePathname } from 'next/navigation';
 
 export default function Footer() {
   const pathname = usePathname() || '';
-  
+
   // Determine if we're on a page that has its own contact section
-  const hasLocalContact = ['/about', '/products', '/products/category/'].some(route => 
+  const hasLocalContact = ['/about', '/products', '/products/category/'].some(route =>
     pathname === route || pathname.startsWith(route + '/') || pathname.startsWith(route + '?') || pathname === route.slice(0, -1)
   );
-  
+
   const contactHref = hasLocalContact ? '#contact' : '/#contact';
   return (
     <footer id="contact-section" className="bg-amber-900 border-t border-amber-800">
@@ -94,9 +94,9 @@ export default function Footer() {
         <div className="border-t border-amber-800 pt-8 flex flex-col sm:flex-row justify-between items-center">
           <p className="text-amber-100 text-sm">© {new Date().getFullYear()} Cairo Healthcare. All rights reserved.</p>
           <div className="flex gap-6 mt-4 sm:mt-0">
-            <a href="http://localhost:3001/privacy" className="text-amber-100 hover:text-amber-300 transition-colors text-sm">
+            <Link href="/privacy" className="text-amber-100 hover:text-amber-300 transition-colors text-sm">
               Privacy
-            </a>
+            </Link>
             <Link href="/terms" className="text-amber-100 hover:text-amber-300 transition-colors text-sm">
               Terms
             </Link>
