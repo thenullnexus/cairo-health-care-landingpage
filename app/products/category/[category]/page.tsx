@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react'
 import { Suspense } from 'react'
 import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
+import Image from "next/image"
+import { ArrowLeft, Sparkles } from "lucide-react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import Contact from "@/components/contact"
@@ -67,6 +68,8 @@ function CategoryContent({ category }: { category: string }) {
     .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ")
 
+  const isCosmetics = category.toLowerCase().includes('cosmetics')
+
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -107,91 +110,146 @@ function CategoryContent({ category }: { category: string }) {
 
           {/* Products Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
-            {products.map((product, index) => (
-              <div
-                key={index}
-                className="group relative bg-white rounded-xl p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 border border-gray-100 hover:border-amber-100 overflow-hidden"
-              >
-                {/* Decorative left border accent */}
-                <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-amber-400 to-amber-600"></div>
+            {products.map((product, index) => {
+              if (isCosmetics) {
+                return (
+                  <div
+                    key={index}
+                    className="group relative bg-white rounded-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 border border-gray-100 hover:border-amber-100 overflow-hidden"
+                  >
+                    {/* Common Cosmetics Image */}
+                    <div className="relative h-56 w-full overflow-hidden bg-gray-100">
+                      <Image
+                        src="/products/cosmetics-skincare-beauty-products.png"
+                        alt="Cosmetics Product"
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
 
-                {/* Content */}
-                <div className="relative h-full flex flex-col">
-                  {/* Product Name with subtle underline */}
-                  <div className="relative pb-3 mb-4">
-                    <h3 className="text-xl font-bold text-gray-900 group-hover:text-amber-700 transition-colors">
-                      {product.name}
-                    </h3>
-                    <div className="absolute bottom-0 left-0 w-12 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-16"></div>
+                      {/* Overlay Category Badge */}
+                      <div className="absolute top-4 right-4">
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-white/90 backdrop-blur-sm text-amber-800 shadow-sm">
+                          Cosmetics
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="p-6">
+                      <div className="relative pb-3 mb-4">
+                        <h3 className="text-xl font-bold text-gray-900 group-hover:text-amber-700 transition-colors">
+                          {product.name}
+                        </h3>
+                        <div className="absolute bottom-0 left-0 w-12 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-16"></div>
+                      </div>
+
+                      <div className="space-y-3">
+                        {product.type && (
+                          <div className="flex items-center text-sm text-gray-600">
+                            <span className="w-2 h-2 rounded-full bg-amber-400 mr-2"></span>
+                            <span className="font-medium text-gray-700 mr-1">Type:</span> {product.type}
+                          </div>
+                        )}
+                        {product.indication && (
+                          <p className="text-sm text-gray-500 line-clamp-2">
+                            <span className="font-medium text-gray-700">Indication:</span> {product.indication}
+                          </p>
+                        )}
+                      </div>
+                    </div>
                   </div>
+                );
+              }
 
-                  {/* Product Details */}
-                  <div className="space-y-4 mb-6 flex-grow">
-                    {product.dosage && (
-                      <div className="flex items-start">
-                        <div className="flex-shrink-0 mt-1.5">
-                          <svg className="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                          </svg>
-                        </div>
-                        <div className="ml-3">
-                          <p className="text-sm font-medium text-gray-500">Dosage</p>
-                          <p className="text-gray-800">{product.dosage}</p>
-                        </div>
-                      </div>
-                    )}
+              return (
+                <div
+                  key={index}
+                  className="group relative bg-white rounded-xl p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 border border-gray-100 hover:border-amber-100 overflow-hidden"
+                >
+                  {/* Decorative left border accent */}
+                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-amber-400 to-amber-600"></div>
 
-                    {product.type && (
-                      <div className="flex items-start">
-                        <div className="flex-shrink-0 mt-1.5">
-                          <svg className="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                          </svg>
-                        </div>
-                        <div className="ml-3">
-                          <p className="text-sm font-medium text-gray-500">Type</p>
-                          <p className="text-gray-800">{product.type}</p>
-                        </div>
-                      </div>
-                    )}
+                  {/* Content */}
+                  <div className="relative h-full flex flex-col">
+                    {/* Product Name with subtle underline */}
+                    <div className="relative pb-3 mb-4">
+                      <h3 className="text-xl font-bold text-gray-900 group-hover:text-amber-700 transition-colors">
+                        {product.name}
+                      </h3>
+                      <div className="absolute bottom-0 left-0 w-12 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-16"></div>
+                    </div>
 
-                    {product.indication && (
-                      <div className="flex items-start">
-                        <div className="flex-shrink-0 mt-1.5">
-                          <svg className="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                          </svg>
+                    {/* Product Details */}
+                    <div className="space-y-4 mb-6 flex-grow">
+                      {product.dosage && product.dosage !== '-' && (
+                        <div className="flex items-start">
+                          <div className="flex-shrink-0 mt-1.5">
+                            <svg className="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                            </svg>
+                          </div>
+                          <div className="ml-3">
+                            <p className="text-sm font-medium text-gray-500">Dosage</p>
+                            <p className="text-gray-800">{product.dosage}</p>
+                          </div>
                         </div>
-                        <div className="ml-3">
-                          <p className="text-sm font-medium text-gray-500">Indication</p>
-                          <p className="text-gray-700">{product.indication}</p>
-                        </div>
-                      </div>
-                    )}
-                  </div>
+                      )}
 
-                  {/* Bottom section with enhanced type badge */}
-                  <div className="mt-auto pt-4">
-                    <div className="flex items-center">
                       {product.type && (
-                        <div className="w-full">
-                          <div className="text-xs font-medium text-gray-500 mb-1">Category</div>
-                          <div className="inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium bg-gradient-to-r from-amber-50 to-amber-100 text-amber-700 border border-amber-100 shadow-sm">
-                            <svg className="w-4 h-4 mr-1.5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <div className="flex items-start">
+                          <div className="flex-shrink-0 mt-1.5">
+                            <svg className="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                             </svg>
-                            {product.type}
+                          </div>
+                          <div className="ml-3">
+                            <p className="text-sm font-medium text-gray-500">Type</p>
+                            <p className="text-gray-800">{product.type}</p>
+                          </div>
+                        </div>
+                      )}
+
+                      {product.indication && (
+                        <div className="flex items-start">
+                          <div className="flex-shrink-0 mt-1.5">
+                            <svg className="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                          </div>
+                          <div className="ml-3">
+                            <p className="text-sm font-medium text-gray-500">Indication</p>
+                            <p className="text-gray-700">{product.indication}</p>
                           </div>
                         </div>
                       )}
                     </div>
+
+                    {/* Bottom section with enhanced type badge */}
+                    <div className="mt-auto pt-4">
+                      <div className="flex items-center">
+                        {product.type && (
+                          <div className="w-full">
+                            <>
+                              <div className="text-xs font-medium text-gray-500 mb-1">Category</div>
+                              <div className="inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium bg-gradient-to-r from-amber-50 to-amber-100 text-amber-700 border border-amber-100 shadow-sm">
+                                <svg className="w-4 h-4 mr-1.5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                </svg>
+                                {product.type}
+                              </div>
+                            </>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Subtle hover effect */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white to-amber-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
                   </div>
                 </div>
-
-                {/* Subtle hover effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white to-amber-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 

@@ -8,7 +8,7 @@ export async function GET(
   try {
     // Ensure params is properly awaited
     const { category } = await Promise.resolve(params);
-    
+
     if (!category) {
       return NextResponse.json(
         { error: 'Category parameter is required' },
@@ -21,9 +21,9 @@ export async function GET(
       'iv-fluids': 'IV Fluids',
       'general-tablets': 'General Tablets',
       'oncology': 'Oncology',
-      'cosmetics': 'Cosmetics Range'
+      'cosmetics': 'Cosmetics'
     };
-    
+
     // Use mapped category name if it exists, otherwise format normally
     const formattedCategory = categoryMap[category] || category
       .split('-')
@@ -32,7 +32,7 @@ export async function GET(
 
     const productsByCategory = await getProductsByCategory();
     const products = productsByCategory[formattedCategory] || [];
-    
+
     if (products.length === 0) {
       console.warn(`No products found for category: ${formattedCategory}`);
     }
