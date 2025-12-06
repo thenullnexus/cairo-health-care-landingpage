@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, Pill, Truck, X, ArrowRight } from 'lucide-react';
 
@@ -11,6 +11,7 @@ interface FeatureCardProps {
   isActive: boolean;
   onClick: (id: number) => void;
   onClose: () => void;
+  isMobile: boolean;
 }
 
 const FeatureCard: React.FC<FeatureCardProps> = ({
@@ -22,8 +23,9 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   isActive,
   onClick,
   onClose,
+  isMobile,
 }) => {
-  const cardVariants = {
+  const desktopVariants = {
     active: {
       width: '66.666%',
       opacity: 1,
@@ -49,7 +51,28 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
     },
   };
 
+  const mobileVariants = {
+    active: {
+      height: '400px',
+      opacity: 1,
+      transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
+    },
+    inactive: {
+      height: '100px',
+      opacity: 1,
+      transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
+    },
+    initial: {
+      height: '100px',
+      opacity: 1,
+    },
+  };
+
   const getVariant = () => {
+    if (isMobile) {
+      return isActive ? 'active' : 'inactive';
+    }
+
     if (isActive) return 'active';
     if (id === 1) return 'inactiveLeft';
     if (id === 3) return 'inactiveRight';
@@ -59,12 +82,12 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   return (
     <motion.div
       layout
-      variants={cardVariants}
+      variants={isMobile ? mobileVariants : desktopVariants}
       initial="initial"
       animate={getVariant()}
-      className={`relative h-[600px] bg-white rounded-2xl overflow-hidden shadow-lg flex-shrink-0 ${
-        isActive ? 'z-10' : 'z-0 cursor-pointer hover:shadow-xl transition-shadow'
-      }`}
+      className={`relative bg-white rounded-2xl overflow-hidden shadow-lg flex-shrink-0 ${isMobile ? 'w-full' : 'h-[600px]'
+        } ${isActive ? 'z-10' : 'z-0 cursor-pointer hover:shadow-xl transition-shadow'
+        }`}
       onClick={(e) => {
         // Only handle click if not clicking on a button or input
         if (!(e.target instanceof HTMLButtonElement || e.target instanceof HTMLInputElement)) {
@@ -74,7 +97,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
     >
       <div className="absolute inset-0 flex">
         {/* Image Section */}
-        <div className={`relative ${isActive ? 'w-1/2' : 'w-full'} h-full`}>
+        <div className={`relative ${isActive ? (isMobile ? 'h-1/2 w-full' : 'w-1/2 h-full') : 'w-full h-full'}`}>
           <div className="absolute inset-0 bg-black/20 z-10"></div>
           <img
             src={image}
@@ -97,7 +120,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
 
         {/* Content Section */}
         <div
-          className={`${isActive ? 'w-1/2' : 'hidden'} p-8 overflow-y-auto`}
+          className={`${isActive ? (isMobile ? 'h-1/2 w-full' : 'w-1/2 h-full') : 'hidden'} p-8 overflow-y-auto bg-white`}
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex items-center mb-6">
@@ -108,7 +131,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
           </div>
           <div className="prose max-w-none text-gray-600">
             {content.split('\n\n').map((paragraph, i) => (
-              <p key={i} className="mb-4">
+              <p key={i} className="mb-4 text-sm md:text-base">
                 {paragraph}
               </p>
             ))}
@@ -119,12 +142,14 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
       {/* Collapsed State Content */}
       {!isActive && (
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
-          <div className="text-white">
+          <div className="text-white w-full">
             <h3 className="text-xl font-bold mb-1">{title}</h3>
-            <p className="text-sm text-white/90 line-clamp-2">
-              {content.split('. ').slice(0, 2).join('. ') + '.'}
-            </p>
-            <button 
+            {!isMobile && (
+              <p className="text-sm text-white/90 line-clamp-2">
+                {content.split('. ').slice(0, 2).join('. ') + '.'}
+              </p>
+            )}
+            <button
               className="group mt-3 text-sm font-medium bg-gradient-to-r from-amber-500 to-amber-600 text-white px-5 py-2 rounded-full transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg hover:shadow-amber-500/30 hover:from-amber-600 hover:to-amber-700"
               onClick={(e) => {
                 e.stopPropagation();
@@ -145,6 +170,22 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
 
 const WhyChooseUs = () => {
   const [activeCard, setActiveCard] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    // Initial check
+    checkMobile();
+
+    // Add event listener
+    window.addEventListener('resize', checkMobile);
+
+    // Cleanup
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const features = [
     {
@@ -205,7 +246,7 @@ With a focus on efficiency and reliability, we have established a streamlined lo
         </div>
 
         {/* Cards Container */}
-        <div className="relative h-[600px] w-full flex items-center justify-center gap-4">
+        <div className={`relative w-full flex gap-4 ${isMobile ? 'flex-col h-auto' : 'h-[600px] items-center justify-center'}`}>
           <AnimatePresence>
             {features.map((feature) => (
               <FeatureCard
@@ -218,6 +259,7 @@ With a focus on efficiency and reliability, we have established a streamlined lo
                 isActive={activeCard === feature.id}
                 onClick={handleCardClick}
                 onClose={handleClose}
+                isMobile={isMobile}
               />
             ))}
           </AnimatePresence>
