@@ -12,8 +12,9 @@ export default function About() {
     <main className="min-h-screen bg-gradient-to-b from-white via-amber-50 to-white">
       <Header />
       <div className="pt-20">
-        <WhoWeAreSection showLearnMore={false} />
+
         <Mission />
+        <WhoWeAreSection showLearnMore={false} />
         <Founder />
       </div>
       <Contact />
