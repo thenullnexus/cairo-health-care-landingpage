@@ -24,9 +24,9 @@ export default function WhoWeAreSection({ showLearnMore = true }: WhoWeAreSectio
               priority
             />
             {/* Experience Badge */}
-            <div className="absolute bottom-8 right-8 bg-gradient-to-r from-amber-600 to-amber-700 text-white p-10 rounded-2xl max-w-sm shadow-2xl backdrop-blur-sm border border-amber-500/20">
-              <h3 className="text-3xl md:text-4xl font-bold mb-2">7+ Year Of Working Experience</h3>
-              <p className="text-base md:text-lg opacity-90 leading-relaxed">Providing our pharmaceutical services since 2019</p>
+            <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8 bg-gradient-to-r from-amber-600 to-amber-700 text-white p-6 md:p-10 rounded-2xl max-w-[calc(100%-2rem)] md:max-w-sm shadow-2xl backdrop-blur-sm border border-amber-500/20">
+              <h3 className="text-2xl md:text-4xl font-bold mb-2">7+ Year Of Working Experience</h3>
+              <p className="text-sm md:text-lg opacity-90 leading-relaxed">Providing our pharmaceutical services since 2019</p>
             </div>
           </div>
 

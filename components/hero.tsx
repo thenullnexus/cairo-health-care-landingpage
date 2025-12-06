@@ -51,7 +51,7 @@ export default function Hero() {
             }`}
           style={{ transform: `translateY(${isVisible ? 0 : 40}px) translateY(${parallaxOffset * 0.2}px)` }}
         >
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
             {/* First line: Premium Pharmaceutical */}
             <div className="mb-2 text-amber-900">
               {['Premium', 'Pharmaceutical'].map((word, wordIdx) => (
