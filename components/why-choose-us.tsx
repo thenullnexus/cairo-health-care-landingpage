@@ -28,24 +28,28 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   const desktopVariants = {
     active: {
       width: '66.666%',
+      height: '100%',
       opacity: 1,
       x: 0,
       transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
     },
     inactiveLeft: {
       width: '16.666%',
+      height: '100%',
       x: 0,
       opacity: 1,
       transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
     },
     inactiveRight: {
       width: '16.666%',
+      height: '100%',
       x: 0,
       opacity: 1,
       transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
     },
     initial: {
       width: '33.333%',
+      height: '100%',
       x: 0,
       opacity: 1,
     },
@@ -53,16 +57,19 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
 
   const mobileVariants = {
     active: {
+      width: '100%',
       height: '400px',
       opacity: 1,
       transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
     },
     inactive: {
+      width: '100%',
       height: '100px',
       opacity: 1,
       transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
     },
     initial: {
+      width: '100%',
       height: '100px',
       opacity: 1,
     },
