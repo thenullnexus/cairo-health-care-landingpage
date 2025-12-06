@@ -30,7 +30,8 @@ const categoryImages: Record<string, string> = {
   'IV Fluids': '/intravenous-iv-solutions-drip.jpg',
   'Antibiotics': '/antibiotics-medication.jpg',
   'Vitamins': '/vitamins-supplements.jpg',
-  'Injectables': '/injectable-medications.jpg',
+  'Injectables': '/medical-injection-vial.jpg',
+  'General Injectables': '/medical-injection-vial.jpg',
   'Cosmetics': '/cosmetics-skincare-beauty-products.jpg',
   'Herbal Products': '/herbal-natural-products.jpg',
 };
