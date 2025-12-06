@@ -1,0 +1,621 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(0.98 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  /* Updated colors to match the logo */
+  --primary: 41 78% 56%;
+  /* Golden Yellow (#E0A43D) */
+  --primary-foreground: oklch(0.2 0 0);
+  --secondary: 27 77% 31%;
+  /* Reddish-Brown (#8B4613) */
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: 45 96% 53%;
+  --accent-foreground: oklch(0.145 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: 45 96% 53%;
+  --chart-1: 45 96% 53%;
+  --chart-2: 20 78% 45%;
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: 41 78% 56%;
+  /* Golden Yellow (#E0A43D) */
+  --sidebar-primary-foreground: oklch(0.2 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: 41 78% 56%;
+  /* Golden Yellow (#E0A43D) */
+}
+
+.dark {
+  --background: oklch(0.1 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: 41 78% 56%;
+  /* Golden Yellow (#E0A43D) */
+  --primary-foreground: oklch(0.2 0 0);
+  --secondary: 27 77% 31%;
+  /* Reddish-Brown (#8B4613) */
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: 41 78% 56%;
+  /* Golden Yellow (#E0A43D) */
+  --accent-foreground: oklch(0.2 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: 41 78% 56%;
+  /* Golden Yellow (#E0A43D) */
+  --chart-1: 41 78% 56%;
+  /* Golden Yellow (#E0A43D) */
+  --chart-2: 27 77% 31%;
+  /* Reddish-Brown (#8B4613) */
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.145 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: 41 78% 56%;
+  /* Golden Yellow (#E0A43D) */
+  --sidebar-primary-foreground: oklch(0.2 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: 41 78% 56%;
+  /* Golden Yellow (#E0A43D) */
+}
+
+@theme inline {
+  --font-sans: "Geist", "Geist Fallback";
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Our Impact circular hover layout */
+.impact-card {
+  position: relative;
+  border-radius: 9999px;
+  padding: 2px;
+  overflow: visible;
+  /* Keep wrapper minimal so no box is visible on hover */
+  background: transparent;
+  transition:
+    transform 400ms ease,
+    box-shadow 400ms ease;
+}
+
+.impact-card-inner {
+  position: relative;
+  isolation: isolate;
+}
+
+.group:hover .impact-card {
+  transform: translateY(-4px);
+  box-shadow:
+    0 20px 40px rgba(15, 23, 42, 0.18),
+    0 0 0 1px rgba(148, 163, 184, 0.25);
+}
+
+/* Sliding orange slice hover effect for icon base (rotated circle) */
+.impact-pie {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  transform: rotate(45deg);
+  background: #e5e7eb;
+}
+
+.impact-pie::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: #8b4613;
+  /* brand secondary */
+}
+
+.impact-pie::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: #e0a43d;
+  /* brand primary */
+  opacity: 0.8;
+  transition: top 0.5s ease-in-out;
+  z-index: -1;
+}
+
+.impact-pie-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transform: rotate(-45deg);
+  background: transparent;
+}
+
+.group:hover .impact-pie::after {
+  top: 0;
+}
+
+/* Category products advanced hover card (no image) */
+.category-card {
+  box-shadow:
+    0 3px 6px rgba(24, 24, 27, 0.02),
+    0 8px 18px rgba(24, 24, 27, 0.06);
+  transition:
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.category-card-shine {
+  border-radius: inherit;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.category-card-shine::before {
+  content: "";
+  width: 150%;
+  padding-bottom: 150%;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  bottom: 40%;
+  filter: blur(36px);
+  opacity: 0.26;
+  transform: translateX(-50%);
+  background-image: conic-gradient(from 225deg at 50% 50%,
+      rgba(224, 164, 61, 0) 0deg,
+      #e0a43d 25deg,
+      rgba(246, 224, 179, 0.7) 285deg,
+      #ffffff 345deg,
+      rgba(224, 164, 61, 0) 360deg);
+}
+
+.category-card-bg {
+  border-radius: inherit;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  -webkit-mask-image: radial-gradient(circle at 60% 10%, black 0%, black 20%, transparent 60%);
+  mask-image: radial-gradient(circle at 60% 10%, black 0%, black 20%, transparent 60%);
+  z-index: 0;
+}
+
+.category-card-tiles {
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.category-card-tiles .tile {
+  position: absolute;
+  background-color: rgba(224, 164, 61, 0.14);
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  opacity: 0;
+}
+
+.category-card-tiles .tile-4,
+.category-card-tiles .tile-6,
+.category-card-tiles .tile-10 {
+  animation-delay: -2s;
+}
+
+.category-card-tiles .tile-3,
+.category-card-tiles .tile-5,
+.category-card-tiles .tile-8 {
+  animation-delay: -4s;
+}
+
+.category-card-tiles .tile-2,
+.category-card-tiles .tile-9 {
+  animation-delay: -6s;
+}
+
+.category-card-tiles .tile-1 {
+  top: 0;
+  left: 0;
+  height: 10%;
+  width: 22.5%;
+}
+
+.category-card-tiles .tile-2 {
+  top: 0;
+  left: 22.5%;
+  height: 10%;
+  width: 27.5%;
+}
+
+.category-card-tiles .tile-3 {
+  top: 0;
+  left: 50%;
+  height: 10%;
+  width: 27.5%;
+}
+
+.category-card-tiles .tile-4 {
+  top: 0;
+  left: 77.5%;
+  height: 10%;
+  width: 22.5%;
+}
+
+.category-card-tiles .tile-5 {
+  top: 10%;
+  left: 0;
+  height: 22.5%;
+  width: 22.5%;
+}
+
+.category-card-tiles .tile-6 {
+  top: 10%;
+  left: 22.5%;
+  height: 22.5%;
+  width: 27.5%;
+}
+
+.category-card-tiles .tile-7 {
+  top: 10%;
+  left: 50%;
+  height: 22.5%;
+  width: 27.5%;
+}
+
+.category-card-tiles .tile-8 {
+  top: 10%;
+  left: 77.5%;
+  height: 22.5%;
+  width: 22.5%;
+}
+
+.category-card-tiles .tile-9 {
+  top: 32.5%;
+  left: 50%;
+  height: 22.5%;
+  width: 27.5%;
+}
+
+.category-card-tiles .tile-10 {
+  top: 32.5%;
+  left: 77.5%;
+  height: 22.5%;
+  width: 22.5%;
+}
+
+@keyframes category-tile {
+
+  0%,
+  12.5%,
+  100% {
+    opacity: 1;
+  }
+
+  25%,
+  82.5% {
+    opacity: 0;
+  }
+}
+
+.category-card-line {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+
+.category-card-line::before,
+.category-card-line::after {
+  content: "";
+  position: absolute;
+  background-color: #f4e4c2;
+  transition: transform 0.35s;
+}
+
+.category-card-line::before {
+  left: 0;
+  right: 0;
+  height: 1px;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+}
+
+.category-card-line::after {
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  transform-origin: 50% 0;
+  transform: scaleY(0);
+}
+
+.category-card-line.line-1::before {
+  top: 10%;
+}
+
+.category-card-line.line-1::after {
+  left: 22.5%;
+}
+
+.category-card-line.line-2::before {
+  top: 32.5%;
+}
+
+.category-card-line.line-2::after {
+  left: 50%;
+}
+
+.category-card-line.line-3::before {
+  top: 55%;
+}
+
+.category-card-line.line-3::after {
+  right: 22.5%;
+}
+
+.group:hover .category-card {
+  border-color: rgba(224, 164, 61, 0.55);
+  background-color: rgba(255, 252, 245, 0.96);
+  box-shadow:
+    0 4px 10px rgba(24, 24, 27, 0.06),
+    0 18px 32px rgba(15, 23, 42, 0.32);
+  transform: translateY(-6px) scale(1.01);
+}
+
+.group:hover .category-card-shine {
+  opacity: 1;
+}
+
+.group:hover .category-card-tiles {
+  opacity: 1;
+  transition-delay: 0.12s;
+}
+
+.group:hover .category-card-tiles .tile {
+  animation-name: category-tile;
+}
+
+.group:hover .category-card-line {
+  opacity: 1;
+  transition-duration: 0.22s;
+}
+
+.group:hover .category-card-line::before {
+  transform: scaleX(1);
+}
+
+.group:hover .category-card-line::after {
+  transform: scaleY(1);
+}
+
+/* Modern Product Card Styles */
+.modern-product-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.modern-product-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(224, 164, 61, 0.1), rgba(251, 191, 36, 0.05), rgba(224, 164, 61, 0.1));
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: -1;
+  filter: blur(12px);
+}
+
+.modern-product-card:hover::before {
+  opacity: 1;
+}
+
+.modern-product-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(224, 164, 61, 0.1);
+}
+
+/* Featured Products Modern Card Styles */
+.featured-product-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.featured-product-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(224, 164, 61, 0.1), rgba(251, 191, 36, 0.1), rgba(224, 164, 61, 0.1));
+  opacity: 0;
+  transition: opacity 0.5s;
+  z-index: -1;
+  filter: blur(8px);
+}
+
+.featured-product-card:hover::before {
+  opacity: 1;
+}
+
+.featured-product-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(224, 164, 61, 0.6), transparent);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.featured-product-card:hover::after {
+  opacity: 1;
+}
+
+/* Holographic Shimmer Effect for Product Cards */
+.product-shimmer::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(0deg,
+      transparent,
+      transparent 30%,
+      rgba(251, 191, 36, 0.4) 50%,
+      transparent 70%,
+      transparent);
+  transform: rotate(-45deg) translateX(-100%);
+  transition: transform 0.6s ease-out;
+  opacity: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.product-shimmer:hover::before {
+  opacity: 1;
+  transform: rotate(-45deg) translateX(100%);
+}
+
+/* Sliding Fill Button Effect */
+.btn-slide-fill {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: white !important;
+  color: #d97706 !important;
+  /* amber-600 */
+  border: 2px solid #d97706;
+  transition: color 0.3s ease;
+}
+
+.btn-slide-fill::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 0;
+  background: #d97706;
+  /* amber-600 */
+  left: 0;
+  bottom: 0;
+  transition: width 0.3s ease;
+  z-index: -1;
+}
+
+.btn-slide-fill:hover {
+  color: white !important;
+}
+
+.btn-slide-fill:hover::before {
+  width: 100%;
+}
+
+.btn-slide-fill * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Forest-style Letter Hover Effect for Hero */
+.hero-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.hero-letter {
+  display: inline-block;
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: default;
+}
+
+.hero-letter:hover {
+  transform: translateY(-8px) scale(1.1);
+}
+
+.hero-space {
+  display: inline-block;
+  width: 0.3em;
+}

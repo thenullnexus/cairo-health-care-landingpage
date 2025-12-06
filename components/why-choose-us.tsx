@@ -1,0 +1,230 @@
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Link, Pill, Truck, X, ArrowRight } from 'lucide-react';
+
+interface FeatureCardProps {
+  id: number;
+  title: string;
+  icon: React.ComponentType<{ className?: string }>;
+  image: string;
+  content: string;
+  isActive: boolean;
+  onClick: (id: number) => void;
+  onClose: () => void;
+}
+
+const FeatureCard: React.FC<FeatureCardProps> = ({
+  id,
+  title,
+  icon: Icon,
+  image,
+  content,
+  isActive,
+  onClick,
+  onClose,
+}) => {
+  const cardVariants = {
+    active: {
+      width: '66.666%',
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
+    },
+    inactiveLeft: {
+      width: '16.666%',
+      x: 0,
+      opacity: 1,
+      transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
+    },
+    inactiveRight: {
+      width: '16.666%',
+      x: 0,
+      opacity: 1,
+      transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
+    },
+    initial: {
+      width: '33.333%',
+      x: 0,
+      opacity: 1,
+    },
+  };
+
+  const getVariant = () => {
+    if (isActive) return 'active';
+    if (id === 1) return 'inactiveLeft';
+    if (id === 3) return 'inactiveRight';
+    return 'initial';
+  };
+
+  return (
+    <motion.div
+      layout
+      variants={cardVariants}
+      initial="initial"
+      animate={getVariant()}
+      className={`relative h-[600px] bg-white rounded-2xl overflow-hidden shadow-lg flex-shrink-0 ${
+        isActive ? 'z-10' : 'z-0 cursor-pointer hover:shadow-xl transition-shadow'
+      }`}
+      onClick={(e) => {
+        // Only handle click if not clicking on a button or input
+        if (!(e.target instanceof HTMLButtonElement || e.target instanceof HTMLInputElement)) {
+          !isActive && onClick(id);
+        }
+      }}
+    >
+      <div className="absolute inset-0 flex">
+        {/* Image Section */}
+        <div className={`relative ${isActive ? 'w-1/2' : 'w-full'} h-full`}>
+          <div className="absolute inset-0 bg-black/20 z-10"></div>
+          <img
+            src={image}
+            alt={title}
+            className="w-full h-full object-cover mix-blend-multiply"
+          />
+          {isActive && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onClose();
+              }}
+              className="absolute top-4 right-4 bg-white/90 hover:bg-white p-2 rounded-full shadow-md transition-all z-20 hover:scale-110 hover:shadow-lg"
+              aria-label="Close"
+            >
+              <X className="w-5 h-5 text-gray-700" />
+            </button>
+          )}
+        </div>
+
+        {/* Content Section */}
+        <div
+          className={`${isActive ? 'w-1/2' : 'hidden'} p-8 overflow-y-auto`}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="flex items-center mb-6">
+            <div className="w-14 h-14 rounded-full bg-amber-100 flex items-center justify-center mr-4">
+              <Icon className="w-6 h-6 text-amber-600" />
+            </div>
+            <h3 className="text-2xl font-bold text-gray-800">{title}</h3>
+          </div>
+          <div className="prose max-w-none text-gray-600">
+            {content.split('\n\n').map((paragraph, i) => (
+              <p key={i} className="mb-4">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Collapsed State Content */}
+      {!isActive && (
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+          <div className="text-white">
+            <h3 className="text-xl font-bold mb-1">{title}</h3>
+            <p className="text-sm text-white/90 line-clamp-2">
+              {content.split('. ').slice(0, 2).join('. ') + '.'}
+            </p>
+            <button 
+              className="group mt-3 text-sm font-medium bg-gradient-to-r from-amber-500 to-amber-600 text-white px-5 py-2 rounded-full transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg hover:shadow-amber-500/30 hover:from-amber-600 hover:to-amber-700"
+              onClick={(e) => {
+                e.stopPropagation();
+                onClick(id);
+              }}
+            >
+              <span className="flex items-center gap-1">
+                Read More
+                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </span>
+            </button>
+          </div>
+        </div>
+      )}
+    </motion.div>
+  );
+};
+
+const WhyChooseUs = () => {
+  const [activeCard, setActiveCard] = useState<number | null>(null);
+
+  const features = [
+    {
+      id: 1,
+      title: "Wide Network",
+      icon: Link,
+      image: "/images/globe-network.png",
+      content: `At Cairo Health Care, we have established an expansive and robust network that extends across the globe. Our wide network of trusted partners and suppliers enables us to ensure a reliable supply chain for pharmaceutical products. With our global reach, we are able to source high-quality medicines and healthcare products from various regions, catering to the diverse needs of our customers.
+
+Through strategic collaborations and strong relationships with reputable pharmaceutical companies, we offer an extensive range of products to healthcare providers, pharmacies, and distributors worldwide. Our network covers a broad spectrum of therapeutic categories, including both branded and generic medications. This comprehensive range allows us to meet the specific requirements and demands of our clients effectively.`
+    },
+    {
+      id: 2,
+      title: "Quality Products",
+      icon: Pill,
+      image: "/images/quality-products.png",
+      content: `Cairo Health Care places utmost importance on delivering only high-quality pharmaceutical products to our valued customers. We understand that the efficacy and safety of medications directly impact patient outcomes. Therefore, we have established stringent quality control measures throughout our process to ensure the highest standards of quality.
+
+We collaborate with renowned manufacturers who adhere to rigorous quality assurance protocols and comply with international regulatory standards. Every product that enters our network undergoes meticulous quality checks and verification procedures. These measures ensure the authenticity, efficacy, and safety of the medications we deliver.`
+    },
+    {
+      id: 3,
+      title: "Express Delivery",
+      icon: Truck,
+      image: "/images/express-delivery.png",
+      content: `At Cairo Health Care, we recognize the importance of timely solutions for urgent healthcare needs. Our express delivery services are designed to address the time-sensitive requirements of healthcare professionals and patients, ensuring that essential medications and healthcare products reach their destinations promptly.
+
+With a focus on efficiency and reliability, we have established a streamlined logistics system that is dedicated to handling urgent shipments with precision. Our experienced team of professionals works closely with shipping partners and carriers to ensure the swift and secure delivery of critical supplies.`
+    }
+  ];
+
+  const handleCardClick = (id: number) => {
+    setActiveCard(id === activeCard ? null : id);
+  };
+
+  const handleClose = () => {
+    setActiveCard(null);
+  };
+
+  return (
+    <section className="py-16 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <div className="flex items-center justify-center space-x-2 mb-4">
+            <span className="h-px w-8 bg-amber-400"></span>
+            <span className="text-sm font-semibold text-amber-600 uppercase tracking-[0.35em]">
+              Why Choose Us
+            </span>
+            <span className="h-px w-8 bg-amber-400"></span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
+            Excellence in <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-amber-800">Healthcare Solutions</span>
+          </h2>
+          <p className="max-w-2xl mx-auto text-lg text-gray-600 leading-relaxed">
+            Discover what sets us apart in the pharmaceutical industry with our exceptional services and commitment to excellence.
+          </p>
+        </div>
+
+        {/* Cards Container */}
+        <div className="relative h-[600px] w-full flex items-center justify-center gap-4">
+          <AnimatePresence>
+            {features.map((feature) => (
+              <FeatureCard
+                key={feature.id}
+                id={feature.id}
+                title={feature.title}
+                icon={feature.icon}
+                image={feature.image}
+                content={feature.content}
+                isActive={activeCard === feature.id}
+                onClick={handleCardClick}
+                onClose={handleClose}
+              />
+            ))}
+          </AnimatePresence>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default WhyChooseUs;
