@@ -80,7 +80,7 @@ export default function AchievementsSection() {
   }
 
   return (
-    <section ref={ref} className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+    <section ref={ref} className="pt-8 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -98,8 +98,8 @@ export default function AchievementsSection() {
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
             Milestones That Define{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-amber-800">
-  Excellence
-</span>
+              Excellence
+            </span>
           </h2>
           <p className="max-w-2xl mx-auto text-lg text-gray-600 leading-relaxed">
             Recognized globally for our commitment to healthcare, these numbers represent the lives we've touched and the trust we've built.

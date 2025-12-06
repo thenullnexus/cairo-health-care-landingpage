@@ -31,21 +31,21 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
       height: '100%',
       opacity: 1,
       x: 0,
-      transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
+      transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] as any },
     },
     inactiveLeft: {
       width: '16.666%',
       height: '100%',
       x: 0,
       opacity: 1,
-      transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
+      transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] as any },
     },
     inactiveRight: {
       width: '16.666%',
       height: '100%',
       x: 0,
       opacity: 1,
-      transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
+      transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] as any },
     },
     initial: {
       width: '33.333%',
@@ -58,19 +58,19 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   const mobileVariants = {
     active: {
       width: '100%',
-      height: '400px',
+      height: 'auto',
       opacity: 1,
-      transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
+      transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] as any },
     },
     inactive: {
       width: '100%',
-      height: '100px',
+      height: '160px',
       opacity: 1,
-      transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
+      transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] as any },
     },
     initial: {
       width: '100%',
-      height: '100px',
+      height: '160px',
       opacity: 1,
     },
   };
@@ -92,64 +92,67 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
       variants={isMobile ? mobileVariants : desktopVariants}
       initial="initial"
       animate={getVariant()}
-      className={`relative bg-white rounded-2xl overflow-hidden shadow-lg flex-shrink-0 ${isMobile ? 'w-full' : 'h-[600px]'
+      className={`relative bg-white rounded-2xl overflow-hidden shadow-lg flex-shrink-0 flex flex-col md:flex-row ${isMobile ? 'w-full' : 'md:h-[600px]'
         } ${isActive ? 'z-10' : 'z-0 cursor-pointer hover:shadow-xl transition-shadow'
         }`}
       onClick={(e) => {
-        // Only handle click if not clicking on a button or input
         if (!(e.target instanceof HTMLButtonElement || e.target instanceof HTMLInputElement)) {
           !isActive && onClick(id);
         }
       }}
     >
-      <div className="absolute inset-0 flex">
-        {/* Image Section */}
-        <div className={`relative ${isActive ? (isMobile ? 'h-1/2 w-full' : 'w-1/2 h-full') : 'w-full h-full'}`}>
-          <div className="absolute inset-0 bg-black/20 z-10"></div>
-          <img
-            src={image}
-            alt={title}
-            className="w-full h-full object-cover mix-blend-multiply"
-          />
-          {isActive && (
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                onClose();
-              }}
-              className="absolute top-4 right-4 bg-white/90 hover:bg-white p-2 rounded-full shadow-md transition-all z-20 hover:scale-110 hover:shadow-lg"
-              aria-label="Close"
-            >
-              <X className="w-5 h-5 text-gray-700" />
-            </button>
-          )}
-        </div>
+      {/* Image Section */}
+      <div className={`relative transition-all duration-500 ${isActive
+        ? (isMobile ? 'h-48 w-full' : 'w-1/2 h-full')
+        : 'w-full h-full'
+        }`}>
+        <div className="absolute inset-0 bg-black/20 z-10"></div>
+        <img
+          src={image}
+          alt={title}
+          className="w-full h-full object-cover mix-blend-multiply"
+        />
+        {isActive && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onClose();
+            }}
+            className="absolute top-4 right-4 bg-white/90 hover:bg-white p-2 rounded-full shadow-md transition-all z-20 hover:scale-110 hover:shadow-lg"
+            aria-label="Close"
+          >
+            <X className="w-5 h-5 text-gray-700" />
+          </button>
+        )}
+      </div>
 
-        {/* Content Section */}
-        <div
-          className={`${isActive ? (isMobile ? 'h-1/2 w-full' : 'w-1/2 h-full') : 'hidden'} p-8 overflow-y-auto bg-white`}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className="flex items-center mb-6">
-            <div className="w-14 h-14 rounded-full bg-amber-100 flex items-center justify-center mr-4">
-              <Icon className="w-6 h-6 text-amber-600" />
-            </div>
-            <h3 className="text-2xl font-bold text-gray-800">{title}</h3>
+      {/* Content Section */}
+      <div
+        className={`bg-white transition-all duration-500 ${isActive
+          ? (isMobile ? 'h-auto w-full p-6' : 'w-1/2 h-full p-8 overflow-y-auto')
+          : 'hidden'
+          }`}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-center mb-6 pt-2">
+          <div className="w-14 h-14 rounded-full bg-amber-100 flex items-center justify-center mr-4 flex-shrink-0">
+            <Icon className="w-6 h-6 text-amber-600" />
           </div>
-          <div className="prose max-w-none text-gray-600">
-            {content.split('\n\n').map((paragraph, i) => (
-              <p key={i} className="mb-4 text-sm md:text-base">
-                {paragraph}
-              </p>
-            ))}
-          </div>
+          <h3 className="text-2xl font-bold text-gray-800">{title}</h3>
+        </div>
+        <div className="prose max-w-none text-gray-600">
+          {content.split('\n\n').map((paragraph, i) => (
+            <p key={i} className="mb-4 text-sm md:text-base">
+              {paragraph}
+            </p>
+          ))}
         </div>
       </div>
 
-      {/* Collapsed State Content */}
+      {/* Collapsed State Content Overlay */}
       {!isActive && (
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
-          <div className="text-white w-full">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4 md:p-6 z-20 pointer-events-none">
+          <div className="text-white w-full pointer-events-auto">
             <h3 className="text-xl font-bold mb-1">{title}</h3>
             {!isMobile && (
               <p className="text-sm text-white/90 line-clamp-2">
@@ -184,13 +187,8 @@ const WhyChooseUs = () => {
       setIsMobile(window.innerWidth < 768);
     };
 
-    // Initial check
     checkMobile();
-
-    // Add event listener
     window.addEventListener('resize', checkMobile);
-
-    // Cleanup
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
@@ -233,7 +231,7 @@ With a focus on efficiency and reliability, we have established a streamlined lo
   };
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="pt-16 pb-8 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -253,7 +251,7 @@ With a focus on efficiency and reliability, we have established a streamlined lo
         </div>
 
         {/* Cards Container */}
-        <div className={`relative w-full flex gap-4 ${isMobile ? 'flex-col h-auto' : 'h-[600px] items-center justify-center'}`}>
+        <div className="relative w-full flex gap-4 flex-col h-auto md:flex-row md:h-[600px] md:items-center md:justify-center">
           <AnimatePresence>
             {features.map((feature) => (
               <FeatureCard
