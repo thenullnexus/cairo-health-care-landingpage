@@ -1,0 +1,4 @@
+1:"$Sreact.fragment"
+2:I[39756,["/cairo-health-care-landingpage/_next/static/chunks/b70459cc9bffcb25.js","/cairo-health-care-landingpage/_next/static/chunks/6ec60a10d1823541.js"],"default"]
+3:I[37457,["/cairo-health-care-landingpage/_next/static/chunks/b70459cc9bffcb25.js","/cairo-health-care-landingpage/_next/static/chunks/6ec60a10d1823541.js"],"default"]
+0:{"buildId":"r-Pyvs0qSMbU6Ja26T-u9","rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"loading":null,"isPartial":false}

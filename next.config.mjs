@@ -8,7 +8,7 @@ const nextConfig = {
   },
   output: 'export',
   trailingSlash: true,
-  distDir: 'out',
+  distDir: 'docs',
   assetPrefix: process.env.NODE_ENV === 'production' ? '/cairo-health-care-landingpage/' : '',
   basePath: process.env.NODE_ENV === 'production' ? '/cairo-health-care-landingpage' : '',
 }
