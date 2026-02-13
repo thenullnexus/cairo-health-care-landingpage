@@ -75,7 +75,7 @@ export default function PageLoader() {
           {/* Logo container */}
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="bounce-logo">
-              <Image src="/images/1763704668517.png" alt="Cairo Healthcare" width={80} height={80} priority />
+              <Image src="/cairo-health-care-landingpage/images/1763704668517.png" alt="Cairo Healthcare" width={80} height={80} priority />
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Plane, PlaneTakeoff, Ship } from 'lucide-react';
+import Image from 'next/image';
 
 const DeliverySection = () => {
   return (
@@ -101,11 +102,12 @@ const DeliverySection = () => {
               <div className="grid grid-cols-2 gap-6">
                 {['fedex', 'dhl', 'tnt', 'ems'].map((logo) => (
                   <div key={logo} className="flex items-center justify-center p-3 bg-gray-50 rounded-lg hover:bg-white hover:shadow-sm transition-all duration-300">
-                    <img 
-                      src={`/images/${logo}.png`} 
-                      alt={logo.toUpperCase()} 
+                    <Image
+                      src={`/images/${logo}.png`}
+                      alt={logo.toUpperCase()}
+                      width={80}
+                      height={80}
                       className="h-20 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
-                      loading="lazy"
                     />
                   </div>
                 ))}

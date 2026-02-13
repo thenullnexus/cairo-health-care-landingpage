@@ -9,25 +9,25 @@ export default function CertificationsSection() {
       id: 1,
       title: "EU-GMP Certification",
       description: "EU-GMP Certified Facilities",
-      icon: "/certifications/eu-gmp.jpg"
+      icon: "/cairo-health-care-landingpage/certifications/eu-gmp.jpg"
     },
     {
       id: 2,
-      title: "WHO GMP Approval",
-      description: "WHO GMP Approved Facilities",
-      icon: "/certifications/who-gmp.jpeg"
+      title: "WHO-GMP Verified",
+      description: "Adhering to World Health Organization good manufacturing norms.",
+      icon: "/cairo-health-care-landingpage/certifications/who-gmp.jpeg"
     },
     {
       id: 3,
-      title: "WHO Prequalification",
-      description: "WHO PRE Approved Facilities",
-      icon: "/certifications/pre-approved.jpeg"
+      title: "PPB & NDA Approved",
+      description: "Pre-approved products for rapid market entry in regulated regions.",
+      icon: "/cairo-health-care-landingpage/certifications/pre-approved.jpeg"
     },
     {
       id: 4,
       title: "Private Labeling",
-      description: "Personal Branding or Private Labeling",
-      icon: "/certifications/private-label.jpeg"
+      description: "Customized manufacturing solutions for global brand owners.",
+      icon: "/cairo-health-care-landingpage/certifications/private-label.jpeg"
     }
   ]
 

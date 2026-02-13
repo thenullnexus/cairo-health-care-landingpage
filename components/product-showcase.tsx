@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react"
 import { useParallax } from "@/hooks/use-parallax"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
+import Image from "next/image"
 
 export default function ProductShowcase() {
   const [isVisible, setIsVisible] = useState(false)
@@ -27,77 +28,77 @@ export default function ProductShowcase() {
   const products = [
     {
       name: "Carfilzomib (CAIROMIB)",
-      image: "/products/cairomib.jpg",
+      image: "/cairo-health-care-landingpage/products/cairomib.jpg",
       dosage: "60mg Injection",
       indication: "Multiple myeloma",
       color: "from-amber-100 to-amber-200",
     },
     {
       name: "Cladribine (CAIROBINE)",
-      image: "/products/cairobine.jpg",
+      image: "/cairo-health-care-landingpage/products/cairobine.jpg",
       dosage: "10mg/10ml Injection",
       indication: "Hairy cell leukemia",
       color: "from-amber-200 to-orange-200",
     },
     {
       name: "Dacarbazine (CAIREX)",
-      image: "/products/cairex.jpg",
+      image: "/cairo-health-care-landingpage/products/cairex.jpg",
       dosage: "500mg Lyophilized Injection",
       indication: "Melanoma, Hodgkin's lymphoma, soft tissue sarcomas",
       color: "from-orange-100 to-orange-200",
     },
     {
       name: "Dactinomycin (DACIRO)",
-      image: "/products/daciro.jpg",
+      image: "/cairo-health-care-landingpage/products/daciro.jpg",
       dosage: "0.5mg Lyophilized Injection",
       indication: "Wilms' tumor, Ewing's sarcoma, melanoma, testicular cancer",
       color: "from-amber-100 to-amber-200",
     },
     {
       name: "Docetaxel (CAIROXEL)",
-      image: "/products/cairoxel.jpg",
+      image: "/cairo-health-care-landingpage/products/cairoxel.jpg",
       dosage: "80mg Liquid Injection",
       indication: "Breast, lung, prostate, head and neck cancer",
       color: "from-orange-100 to-orange-200",
     },
     {
       name: "Fludarabine (FLUAIRO)",
-      image: "/products/fluiro.jpg",
+      image: "/cairo-health-care-landingpage/products/fluiro.jpg",
       dosage: "10mg, 50mg Lyophilized Injection",
       indication: "Chronic lymphocytic leukemia (CLL)",
       color: "from-amber-200 to-orange-200",
     },
     {
       name: "Hydroxyurea (CAROERA)",
-      image: "/products/caroera.jpg",
+      image: "/cairo-health-care-landingpage/products/caroera.jpg",
       dosage: "500mg Capsules",
       indication: "Sickle cell anemia, cancer",
       color: "from-orange-100 to-orange-200",
     },
     {
       name: "Nilotinib (NILORIB)",
-      image: "/products/nilorib.jpg",
+      image: "/cairo-health-care-landingpage/products/nilorib.jpg",
       dosage: "150mg, 200mg Capsules",
       indication: "Chronic myeloid leukemia (CML)",
       color: "from-amber-100 to-amber-200",
     },
     {
       name: "Paclitaxel (PACRO)",
-      image: "/products/pacro.jpg",
+      image: "/cairo-health-care-landingpage/products/pacro.jpg",
       dosage: "30mg/5ml, 100mg/16.7ml, 300mg/50ml Injection",
       indication: "Breast cancer, ovarian cancer, lung cancer",
       color: "from-amber-200 to-orange-200",
     },
     {
       name: "Topotecan (CAIROTECAN)",
-      image: "/products/cairotecan.jpg",
+      image: "/cairo-health-care-landingpage/products/cairotecan.jpg",
       dosage: "1mg, 2.5mg, 4mg Lyophilized Injection",
       indication: "Ovarian cancer, small cell lung cancer",
       color: "from-amber-100 to-amber-200",
     },
     {
       name: "Vinblastine (VINCABLAS)",
-      image: "/products/vincablas.jpg",
+      image: "/cairo-health-care-landingpage/products/vincablas.jpg",
       dosage: "10mg/10ml Liquid Injection",
       indication: "Hodgkin's lymphoma, testicular cancer",
       color: "from-orange-100 to-orange-200",
@@ -118,9 +119,8 @@ export default function ProductShowcase() {
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
             Excellence in <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-amber-800">Oncology & Pharma</span>
           </h2>
-          <p className={`text-lg text-gray-900 max-w-2xl mx-auto transform transition-all duration-1000 delay-200 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}>
+          <p className={`text-lg text-gray-900 max-w-2xl mx-auto transform transition-all duration-1000 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            }`}>
             Leading oncology and pharmaceutical solutions trusted by healthcare providers
           </p>
         </div>
@@ -142,19 +142,13 @@ export default function ProductShowcase() {
               {/* Image section */}
               <div className="relative h-64 bg-gradient-to-br from-amber-50 via-white to-orange-50 overflow-hidden">
                 <div className="absolute inset-0 flex items-center justify-center p-6">
-                  <img
+                  <Image
                     src={product.image}
                     alt={product.name}
+                    width={200}
+                    height={200}
                     className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-110"
                     style={{ maxWidth: '95%', maxHeight: '95%' }}
-                    onError={(e) => {
-                      e.currentTarget.src = '';
-                      e.currentTarget.className = `max-w-full max-h-full bg-gradient-to-r ${product.color} flex items-center justify-center rounded-lg`;
-                      const fallbackText = document.createElement('div');
-                      fallbackText.className = 'text-4xl font-bold text-white';
-                      fallbackText.textContent = product.name.charAt(0);
-                      e.currentTarget.replaceWith(fallbackText);
-                    }}
                   />
                 </div>
 

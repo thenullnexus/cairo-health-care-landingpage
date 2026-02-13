@@ -8,7 +8,7 @@ import emailjs from '@emailjs/browser'
 export default function Contact() {
   const [isVisible, setIsVisible] = useState(false)
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
-  
+
   // Refs for animation and form
   const sectionRef = useRef(null)
   const formRef = useRef<HTMLFormElement>(null)
@@ -32,7 +32,7 @@ export default function Contact() {
     setStatus('sending');
 
     // EmailJS Configuration
-    const SERVICE_ID = 'service_p0ny5md'; 
+    const SERVICE_ID = 'service_p0ny5md';
     const TEMPLATE_ID = 'template_l6qls8l';
     const PUBLIC_KEY = '2hxxGl45gxJjSO6_S';
 
@@ -59,7 +59,7 @@ export default function Contact() {
       console.log('EmailJS Success:', result);
       setStatus('success');
       formRef.current.reset();
-      
+
       // Reset status after 5 seconds
       setTimeout(() => setStatus('idle'), 5000);
     } catch (error) {
@@ -70,7 +70,7 @@ export default function Contact() {
         templateId: TEMPLATE_ID,
         publicKey: PUBLIC_KEY ? 'Key exists' : 'Missing key'
       });
-      
+
       setStatus('error');
     }
   };
@@ -82,7 +82,7 @@ export default function Contact() {
       className="relative py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-amber-900 to-amber-800 overflow-hidden"
     >
       <div className="absolute inset-0 opacity-10 z-0">
-        <Image src="/office-building-contact-us-professional.png" alt="Background" fill className="object-cover" priority={false} />
+        <Image src="/cairo-health-care-landingpage/office-building-contact-us-professional.png" alt="Background" fill className="object-cover" priority={false} />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -140,9 +140,9 @@ export default function Contact() {
             className={`transform transition-all duration-1000 delay-200 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
               }`}
           >
-            <form 
-              ref={formRef} 
-              onSubmit={sendEmail} 
+            <form
+              ref={formRef}
+              onSubmit={sendEmail}
               className="bg-amber-800/50 backdrop-blur border border-amber-700 rounded-2xl p-8"
             >
               {/* Status Messages */}
@@ -161,7 +161,7 @@ export default function Contact() {
                 <label className="block text-sm font-medium text-white mb-2">Name</label>
                 <input
                   type="text"
-                  name="user_name" 
+                  name="user_name"
                   required
                   className="w-full px-4 py-3 rounded-lg bg-amber-700/50 border border-amber-600 text-white placeholder-amber-200 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition-colors"
                   placeholder="Your name"
@@ -172,7 +172,7 @@ export default function Contact() {
                 <label className="block text-sm font-medium text-white mb-2">Email</label>
                 <input
                   type="email"
-                  name="user_email" 
+                  name="user_email"
                   required
                   className="w-full px-4 py-3 rounded-lg bg-amber-700/50 border border-amber-600 text-white placeholder-amber-200 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition-colors"
                   placeholder="your@email.com"
@@ -182,7 +182,7 @@ export default function Contact() {
               <div className="mb-6">
                 <label className="block text-sm font-medium text-white mb-2">Message</label>
                 <textarea
-                  name="message" 
+                  name="message"
                   required
                   rows={4}
                   className="w-full px-4 py-3 rounded-lg bg-amber-700/50 border border-amber-600 text-white placeholder-amber-200 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition-colors resize-none"
@@ -190,7 +190,7 @@ export default function Contact() {
                 />
               </div>
 
-              <button 
+              <button
                 type="submit"
                 disabled={status === 'sending'}
                 className="btn-slide-fill w-full py-3 px-6 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-amber-900 font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/40 disabled:opacity-70 disabled:cursor-not-allowed"

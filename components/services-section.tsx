@@ -33,22 +33,22 @@ export default function ServicesSection() {
     {
       title: "Named Patient Supply",
       description: "We support patients with rare and life-threatening conditions by providing access to medicines to meet their treatment needs, including those not approved or commercially available in their home countries.",
-      image: "/services/named-patient.png"
+      image: "/cairo-health-care-landingpage/services/named-patient.png"
     },
     {
       title: "Contract Manufacturing",
-      description: "We provide manufacturing services through WHO-GMP, US FDA, and UK MHRA approved facilities for branded generics, vaccines, and neutral label products across multiple therapeutic areas and forms.",
-      image: "/services/contract-manufacturing.png"
+      description: "Robust manufacturing capabilities for customized healthcare solutions.",
+      image: "/cairo-health-care-landingpage/services/contract-manufacturing.png"
     },
     {
-      title: "Pharmaceutical Wholesaling",
-      description: "We operate as a full-line pharmaceutical wholesaler with access to over 135,000 product lines including branded, generics, orphan, and unlicensed medicines — distributed globally with regulatory compliance.",
-      image: "/services/wholesaling.png"
+      title: "Wholesaling & Distribution",
+      description: "Extensive network for seamless pharmaceutical supply and distribution.",
+      image: "/cairo-health-care-landingpage/services/wholesaling.png"
     },
     {
-      title: "Dossiers & Stability Studies",
-      description: "We assist with preparation of CTD/eCTD dossiers, conduct stability studies, and support BA/BE studies to meet regulatory authority requirements in global markets.",
-      image: "/services/stability-studies.png"
+      title: "Stability & Quality Studies",
+      description: "Rigorous testing and analysis to ensure product efficacy and safety.",
+      image: "/cairo-health-care-landingpage/services/stability-studies.png"
     }
   ];
 

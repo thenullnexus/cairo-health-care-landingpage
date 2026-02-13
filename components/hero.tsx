@@ -7,8 +7,8 @@ import Image from "next/image"
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false)
-  const heroRef = useRef<HTMLDivElement>(null)
-  const parallaxOffset = useParallax(heroRef, 0.5)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const parallaxOffset = useParallax(containerRef as React.RefObject<HTMLElement>, 0.5)
 
   useEffect(() => {
     setIsVisible(true)
@@ -16,14 +16,14 @@ export default function Hero() {
 
   return (
     <section
-      ref={heroRef}
+      ref={containerRef}
       id="home"
       className="relative w-full min-h-screen pt-20 overflow-hidden bg-gradient-to-b from-amber-50 via-white to-amber-50"
     >
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/pharmaceutical-laboratory-healthcare.png"
+          src="/cairo-health-care-landingpage/pharmaceutical-laboratory-healthcare.png"
           alt="Pharmaceutical laboratory"
           fill
           className="object-cover opacity-20"

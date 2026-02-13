@@ -17,7 +17,7 @@ export default function WhoWeAreSection({ showLearnMore = true }: WhoWeAreSectio
           {/* Left Column - Image with Experience Badge */}
           <div className="relative h-[500px] lg:h-[700px] rounded-3xl overflow-hidden shadow-2xl">
             <Image
-              src="/images/cargo-plane.png"
+              src="/cairo-health-care-landingpage/images/cargo-plane.png"
               alt="Cargo plane at airport"
               fill
               className="object-cover hover:scale-105 transition-transform duration-700"

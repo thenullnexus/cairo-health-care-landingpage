@@ -3,6 +3,7 @@ import { Beaker, Pill, Droplets, Plus } from 'lucide-react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { getAllCategories } from '@/app/actions/getProductsByCategory';
+import { useRouter } from 'next/navigation';
 
 interface CategoryCard {
   id: number;
@@ -50,6 +51,7 @@ const categoryDescriptions: Record<string, string> = {
 const ProductCategories = () => {
   const [categories, setCategories] = useState<CategoryCard[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     const loadCategories = async () => {
@@ -141,7 +143,7 @@ const ProductCategories = () => {
   }, []);
 
   const navigateTo = (path: string) => {
-    window.location.href = path;
+    router.push(path);
   };
 
   const cardVariants = {

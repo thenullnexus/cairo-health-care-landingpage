@@ -27,9 +27,8 @@ export default function Founder() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <div
-            className={`transform transition-all duration-1000 ${
-              isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
-            }`}
+            className={`transform transition-all duration-1000 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
+              }`}
           >
             <div className="mb-6">
               <span className="text-amber-600 font-semibold text-sm uppercase tracking-wider">Our Leadership</span>
@@ -71,15 +70,14 @@ export default function Founder() {
           </div>
 
           <div
-            className={`transform transition-all duration-1000 delay-200 ${
-              isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
-            }`}
+            className={`transform transition-all duration-1000 delay-200 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
+              }`}
           >
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-amber-700 rounded-2xl transform -rotate-3 opacity-30" />
               <div className="relative bg-gradient-to-br from-amber-100 to-amber-200 rounded-2xl overflow-hidden aspect-square">
                 <Image
-                  src="/CEO.png"
+                  src="/cairo-health-care-landingpage/CEO.png"
                   alt="Syed Abu Tahir, Founder & CEO"
                   fill
                   className="object-cover"

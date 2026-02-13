@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, Pill, Truck, X, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 
 interface FeatureCardProps {
   id: number;
@@ -107,9 +108,10 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
         : 'w-full h-full'
         }`}>
         <div className="absolute inset-0 bg-black/20 z-10"></div>
-        <img
+        <Image
           src={image}
           alt={title}
+          fill
           className="w-full h-full object-cover mix-blend-multiply"
         />
         {isActive && (
@@ -197,7 +199,7 @@ const WhyChooseUs = () => {
       id: 1,
       title: "Wide Network",
       icon: Link,
-      image: "/images/globe-network.png",
+      image: "/cairo-health-care-landingpage/images/globe-network.png",
       content: `At Cairo Health Care, we have established an expansive and robust network that extends across the globe. Our wide network of trusted partners and suppliers enables us to ensure a reliable supply chain for pharmaceutical products. With our global reach, we are able to source high-quality medicines and healthcare products from various regions, catering to the diverse needs of our customers.
 
 Through strategic collaborations and strong relationships with reputable pharmaceutical companies, we offer an extensive range of products to healthcare providers, pharmacies, and distributors worldwide. Our network covers a broad spectrum of therapeutic categories, including both branded and generic medications. This comprehensive range allows us to meet the specific requirements and demands of our clients effectively.`
@@ -206,7 +208,7 @@ Through strategic collaborations and strong relationships with reputable pharmac
       id: 2,
       title: "Quality Products",
       icon: Pill,
-      image: "/images/quality-products.png",
+      image: "/cairo-health-care-landingpage/images/quality-products.png",
       content: `Cairo Health Care places utmost importance on delivering only high-quality pharmaceutical products to our valued customers. We understand that the efficacy and safety of medications directly impact patient outcomes. Therefore, we have established stringent quality control measures throughout our process to ensure the highest standards of quality.
 
 We collaborate with renowned manufacturers who adhere to rigorous quality assurance protocols and comply with international regulatory standards. Every product that enters our network undergoes meticulous quality checks and verification procedures. These measures ensure the authenticity, efficacy, and safety of the medications we deliver.`
@@ -215,7 +217,7 @@ We collaborate with renowned manufacturers who adhere to rigorous quality assura
       id: 3,
       title: "Express Delivery",
       icon: Truck,
-      image: "/images/express-delivery.png",
+      image: "/cairo-health-care-landingpage/images/express-delivery.png",
       content: `At Cairo Health Care, we recognize the importance of timely solutions for urgent healthcare needs. Our express delivery services are designed to address the time-sensitive requirements of healthcare professionals and patients, ensuring that essential medications and healthcare products reach their destinations promptly.
 
 With a focus on efficiency and reliability, we have established a streamlined logistics system that is dedicated to handling urgent shipments with precision. Our experienced team of professionals works closely with shipping partners and carriers to ensure the swift and secure delivery of critical supplies.`

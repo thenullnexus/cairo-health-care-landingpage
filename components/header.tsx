@@ -4,17 +4,18 @@ import { useState } from "react"
 import { Menu, X, ChevronDown } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import Image from "next/image"
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [isProductsOpen, setIsProductsOpen] = useState(false)
   const pathname = usePathname()
-  
+
   // Determine if we're on a page that has its own contact section
-  const hasLocalContact = ['/about', '/products', '/products/category/'].some(route => 
+  const hasLocalContact = ['/about', '/products', '/products/category/'].some(route =>
     pathname === route || pathname.startsWith(route + '/') || pathname.startsWith(route + '?') || pathname === route.slice(0, -1)
   )
-  
+
   const contactHref = hasLocalContact ? '#contact' : '/#contact'
 
   const productCategories = [
@@ -33,7 +34,13 @@ export default function Header() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3 group cursor-pointer">
           <div className="relative overflow-hidden rounded-full transition-transform duration-300 group-hover:scale-105">
-            <img src="/images/1763704668517.png" alt="Cairo Healthcare Logo" className="w-16 h-16 object-contain" />
+            <Image
+              src="/cairo-health-care-landingpage/images/1763704668517.png"
+              alt="Cairo Healthcare Logo"
+              width={64}
+              height={64}
+              className="w-16 h-16 object-contain"
+            />
           </div>
           <div className="flex flex-col">
             <span className="text-2xl font-bold text-amber-900 tracking-tight group-hover:text-amber-700 transition-colors">Cairo</span>

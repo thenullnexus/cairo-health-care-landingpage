@@ -1,5 +1,3 @@
-'use server'
-
 import { getProductsByCategory as getProducts } from '@/lib/excel-utils'
 
 export async function getAllCategories() {
@@ -12,10 +10,10 @@ export async function getAllCategories() {
   }
 }
 
-export async function getProductsByCategory(category: string) {
+export async function getProductsByCategoryFunc(category: string) {
   try {
     const productsByCategory = await getProducts()
-    // Convert the category from URL format to match Excel format (e.g., 'general-tablets' -> 'General Tablets')
+    // Convert to category from URL format to match Excel format (e.g., 'general-tablets' -> 'General Tablets')
     const formattedCategory = category
       .split('-')
       .map(word => word.charAt(0).toUpperCase() + word.slice(1))
